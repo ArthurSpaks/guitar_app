@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UploadFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:textColor="@color/white"
+        android:id="@+id/upload_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:text="@string/upload_title" />
+
+    <EditText
+        android:textColor="@color/white"
+        android:id="@+id/song_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="270dp"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/gold"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:hint="@string/song_name"
+        android:inputType="text"
+        android:autofillHints="name of the song" />
+
+    <EditText
+        android:textColor="@color/white"
+        android:id="@+id/artist_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="370dp"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/gold"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:hint="@string/artist"
+        android:inputType="text"
+        android:autofillHints="name of the artist" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="100dp"
+        android:layout_marginTop="470dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:textColor="@color/white"
+            android:id="@+id/checkBox1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/tabs" />
+
+        <CheckBox
+            android:textColor="@color/white"
+            android:id="@+id/checkBox2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/chords" />
+    </LinearLayout>
+
+    <TextView
+        android:visibility="gone"
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/next_tabs"
+        android:text="@string/next"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="80dp"
+        android:layout_marginEnd="50dp"/>
+
+    <TextView
+        android:id="@+id/alert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="150dp"
+        android:textColor="@color/red"/>
+
+
+</FrameLayout>

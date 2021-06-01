@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/chords_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp">
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/lyrics"
+        android:backgroundTint="@color/white"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:hint="@string/add_lyrics"
+        android:autofillHints="lyrics"
+        android:inputType="text" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="end"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp">
+
+        <ImageButton
+            android:id="@+id/add_chord"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginEnd="15dp"
+            android:background="?android:selectableItemBackground"
+            android:src="@drawable/ic__add"
+            android:contentDescription="@string/add_strings_layout" />
+
+        <ImageButton
+            android:id="@+id/remove_chord"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:background="?android:selectableItemBackground"
+            android:src="@drawable/ic__remove"
+            android:contentDescription="@string/add_strings_layout" />
+
+    </LinearLayout>
+
+</LinearLayout>

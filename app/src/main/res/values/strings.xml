@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name">Guitar Application</string>
+    <string name="bottom_navigation_item1">Info</string>
+    <string name="bottom_navigation_item2">Songs</string>
+    <string name="bottom_navigation_item3">Upload</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_information_fragment">Hello Information fragment</string>
+    <string name="hello_songs_fragment">Hello Songs fragment</string>
+    <string name="hello_upload_fragment">Hello Upload fragment</string>
+    <!-- Upload first screen text -->
+    <string name="upload_title">Upload your song!</string>
+    <string name="song_name">&#160;&#160;&#160;&#160;Song Name&#160;&#160;&#160;&#160;</string>
+    <string name="artist">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Artist&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</string>
+    <string name="tabs">Tabs</string>
+    <string name="chords">Chords</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="next">Next</string>
+    <string name="back">Back</string>
+    <string name="zero">0</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="seven">7</string>
+    <string name="eight">8</string>
+    <string name="nine">9</string>
+    <string name="ten">10</string>
+    <string name="eleven">11</string>
+    <string name="twelve">12</string>
+    <string name="thirteen">13</string>
+    <string name="fourteen">14</string>
+    <string name="fifteen">15</string>
+    <string name="sixteen">16</string>
+    <string name="seventeen">17</string>
+    <string name="eighteen">18</string>
+    <string name="nineteen">19</string>
+    <string name="twenty">20</string>
+    <string name="twenty_one">21</string>
+    <string name="delete">Del</string>
+    <string name="left">&#60;</string>
+    <string name="right">&#62;</string>
+    <string name="alert">Song/Artist name is too long/short!</string>
+    <string name="add_lyrics">Add Lyrics</string>
+    <string name="pointer">pointer</string>
+    <string name="plus">+</string>
+    <string name="add_chords">Add Chords</string>
+    <string name="add_recording">Add your recording!</string>
+    <string name="select_song">Select music file</string>
+    <string name="finish">Finish</string>
+    <string name="sixties">60\'s</string>
+    <string name="seventies">70\'s</string>
+    <string name="eighties">80\'s</string>
+    <string name="nineties">90\'s</string>
+    <string name="noughties">00\'s</string>
+    <string name="tens">10\'s</string>
+    <string name="acoustic">Acoustic</string>
+    <string name="electric">Electric</string>
+    <string name="bass">Bass</string>
+    <string name="fingerstyle">Fingerstyle</string>
+    <string name="strum">Strum</string>
+    <string name="jazz">Jazz</string>
+    <string name="country">Country</string>
+    <string name="metal">Metal</string>
+    <string name="funk">Funk</string>
+    <string name="blues">Blues</string>
+    <string name="tags">tags</string>
+    <string name="pause_button">pause_button</string>
+    <string name="play_button">play_button</string>
+    <string name="add_strings_layout">add_strings_layout</string>
+    <string name="chord">Chord</string>
+    <string name="version_info">Version: 0.1</string>
+
+</resources>

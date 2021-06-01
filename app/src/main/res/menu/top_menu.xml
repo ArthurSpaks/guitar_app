@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/sixties"
+        android:title="@string/sixties"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/seventies"
+        android:title="@string/seventies"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/eighties"
+        android:title="@string/eighties"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/nineties"
+        android:title="@string/nineties"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/noughties"
+        android:title="@string/noughties"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/tens"
+        android:title="@string/tens"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/acoustic"
+        android:title="@string/acoustic"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/electric"
+        android:title="@string/electric"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/bass"
+        android:title="@string/bass"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/fingerstyle"
+        android:title="@string/fingerstyle"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/strum"
+        android:title="@string/strum"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/jazz"
+        android:title="@string/jazz"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/country"
+        android:title="@string/country"
+        app:showAsAction="never"/>
+
+
+    <item
+        android:id="@+id/metal"
+        android:title="@string/metal"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/funk"
+        android:title="@string/funk"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/blues"
+        android:title="@string/blues"
+        app:showAsAction="never"/>
+
+</menu>

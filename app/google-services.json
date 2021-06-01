@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "45914503738",
+    "project_id": "guitar-songs-f62de",
+    "storage_bucket": "guitar-songs-f62de.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:45914503738:android:0f670c348e1c23a4d7d303",
+        "android_client_info": {
+          "package_name": "com.example.guitarapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "45914503738-ji5a79ede46rp1nj9ju5obdgni0q9ob0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbVmDJi6lK_K2V27m2Gmuy8eZRsLGgT-k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "45914503738-ji5a79ede46rp1nj9ju5obdgni0q9ob0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
