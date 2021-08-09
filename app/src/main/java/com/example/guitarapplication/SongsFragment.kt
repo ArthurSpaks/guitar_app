@@ -9,6 +9,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * This fragment represents the songs that are
@@ -50,10 +52,17 @@ class SongsFragment : Fragment() {
                         loadChosedSongTabsFragment() // load the chosen song fragment and display the song information
                     }
                     songList.add(song) // add the button to the list
-                    linearLayout.addView(song) // display the button on the screen
+                    songList.sortWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it.text.toString() }) // sort the list
+                    linearLayout.addView(song, songList.indexOf(song)) // display the button on the screen at a sorted position
                 }
             }
-        }
+            Log.e("songList", songList.toString())
+            /*
+            songList.sortWith(Comparator { b1: Button, b2: Button ->
+                b1.text.toString().compareTo(b2.text.toString())
+            })*/
+
+        }// .addOnSuccessListener { for (song in songList) linearLayout.addView(song) }
 
         return view
     }
