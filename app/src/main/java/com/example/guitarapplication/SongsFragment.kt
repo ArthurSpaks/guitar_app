@@ -6,10 +6,10 @@ import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.core.content.ContextCompat
+import androidx.core.view.iterator
 import androidx.fragment.app.Fragment
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import java.util.*
 import kotlin.collections.ArrayList
 
 /**
@@ -54,15 +54,22 @@ class SongsFragment : Fragment() {
                     songList.add(song) // add the button to the list
                     songList.sortWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it.text.toString() }) // sort the list
                     linearLayout.addView(song, songList.indexOf(song)) // display the button on the screen at a sorted position
-                }
+                }.continueWith {
+                    search.setOnQueryTextListener(object : SearchView.OnQueryTextListener{ // search view implementation
+                        override fun onQueryTextSubmit(query: String?): Boolean {
+                            return false
+                        }
+                        override fun onQueryTextChange(newText: String?): Boolean { // if text in the search view is changed
+                            for (songView in linearLayout) { // go through every song
+                                // if the song doesn't contain the text, make it invisible
+                                if (!(songView as Button).text.toString().contains(newText.toString(), true)) songView.visibility = View.GONE
+                                else songView.visibility = View.VISIBLE
+                            }
+                            return false
+                        }
+                    })}
             }
-            Log.e("songList", songList.toString())
-            /*
-            songList.sortWith(Comparator { b1: Button, b2: Button ->
-                b1.text.toString().compareTo(b2.text.toString())
-            })*/
-
-        }// .addOnSuccessListener { for (song in songList) linearLayout.addView(song) }
+        }
 
         return view
     }
