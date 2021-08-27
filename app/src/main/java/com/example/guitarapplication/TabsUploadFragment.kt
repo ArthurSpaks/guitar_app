@@ -63,7 +63,8 @@ class TabsUploadFragment : Fragment() {
         val relativeLayout : RelativeLayout = view.findViewById(R.id.relative_layout) // layout used to place tabs on the screen
 
         val startPosX = pos.x + pos.marginStart // leftmost possible X position of pointer
-        val stepX = 20.toPx() // step that pointer moves horizontally
+        val stepX = 20.toPx() //1
+        // step that pointer moves horizontally+
         val endPosX = startPosX + 15 * stepX //806.0F // rightmost possible X position of pointer
 
         left.setOnClickListener {

@@ -10,6 +10,7 @@ import androidx.core.view.iterator
 import androidx.fragment.app.Fragment
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import java.io.File
 import kotlin.collections.ArrayList
 
 /**
@@ -33,7 +34,7 @@ class SongsFragment : Fragment() {
         val tags : ImageButton = view.findViewById(R.id.tags) // image button to choose a tag to limit the available songs
         val linearLayout : LinearLayout = view.findViewById(R.id.linear_layout) // the layout the songs are displayed in
 
-        tags.setOnClickListener { showPopup(tags) } // set click listener for tags button
+        tags.setOnClickListener { showPopup(view, tags) } // set click listener for tags button
 
         val database = FirebaseStorage.getInstance().reference // get reference to the database
         val songsRef = database.child("songs") // reference to the songs folder in the database (mpeg files)
@@ -67,7 +68,8 @@ class SongsFragment : Fragment() {
                             }
                             return false
                         }
-                    })}
+                    })
+                }
             }
         }
 
@@ -86,65 +88,157 @@ class SongsFragment : Fragment() {
      * handle the tags button and show the available tags that songs
      * can have
      */
-    private fun showPopup(view : View) {
-        val popup = PopupMenu(activity, view)
+    private fun showPopup(view : View, tags : View) {
+        val popup = PopupMenu(activity, tags)
         val inflater: MenuInflater = popup.menuInflater
         inflater.inflate(R.menu.top_menu, popup.menu) // inflate the popup for the menu
-        popup.setOnMenuItemClickListener { menuItem -> // set click listener for each tag item
-            when(menuItem.itemId){
-                R.id.sixties-> { // if 60's clicked
-                    Toast.makeText(activity?.applicationContext, "sixties clicked", Toast.LENGTH_LONG).show()
-                }
-                R.id.seventies-> { // 70's clicked
-                    Toast.makeText(activity?.applicationContext, "seventies clicked", Toast.LENGTH_LONG).show()
-                }
-                R.id.eighties-> { // if 80's clicked
-                    Toast.makeText(activity?.applicationContext, "eighties clicked", Toast.LENGTH_LONG).show()
-                }
-                R.id.nineties-> { // if 90's clicked
-                    Toast.makeText(activity?.applicationContext, "nineties clicked", Toast.LENGTH_LONG).show()
-                }
-                R.id.noughties-> { // if 00's clicked
-                    Toast.makeText(activity?.applicationContext, "noughties clicked", Toast.LENGTH_LONG).show()
-                }
-                R.id.tens-> { // if 10's clicked
-                    Toast.makeText(activity?.applicationContext, "tens clicked", Toast.LENGTH_LONG).show()
-                }
-                R.id.acoustic-> { // if Acoustic clicked
-                    Toast.makeText(activity?.applicationContext, "acoustic clicked", Toast.LENGTH_LONG).show()
-                }
-                R.id.electric-> { // if Electric clicked
-                    Toast.makeText(activity?.applicationContext, "electric clicked", Toast.LENGTH_LONG).show()
-                }
-                R.id.bass-> { // if Bass clicked
-                    Toast.makeText(activity?.applicationContext, "bass clicked", Toast.LENGTH_LONG).show()
-                }
-                R.id.fingerstyle-> { // if Fingerstyle clicked
-                    Toast.makeText(activity?.applicationContext, "fingerstyle clicked", Toast.LENGTH_LONG).show()
-                }
-                R.id.strum-> { // if Strum clicked
-                    Toast.makeText(activity?.applicationContext, "strum clicked", Toast.LENGTH_LONG).show()
-                }
-                R.id.jazz-> { // if Jazz clicked
-                    Toast.makeText(activity?.applicationContext, "jazz clicked", Toast.LENGTH_LONG).show()
-                }
-                R.id.country-> { // if Country clicked
-                    Toast.makeText(activity?.applicationContext, "country clicked", Toast.LENGTH_LONG).show()
-                }
-                R.id.metal-> { // if Metal clicked
-                    Toast.makeText(activity?.applicationContext, "metal clicked", Toast.LENGTH_LONG).show()
-                }
-                R.id.funk-> { // if Funk clicked
-                    Toast.makeText(activity?.applicationContext, "funk clicked", Toast.LENGTH_LONG).show()
-                }
-                R.id.blues-> { // if Blues clicked
-                    Toast.makeText(activity?.applicationContext, "blues clicked", Toast.LENGTH_LONG).show()
-                }
 
+        val songsTags = HashMap<String, List<String>>()
+        val database = FirebaseStorage.getInstance().reference // get reference to the database
+        val tagsRef =
+            database.child("tags") // reference to the songs folder in the database (mpeg files)
+        val tags = tagsRef.listAll() // get all files in the folder
+
+        tags.addOnCompleteListener { result -> // once all the songs' tags were retrieved
+            val items = result.result!!.items
+            items.forEach { item ->  // for each song
+                item.downloadUrl.addOnCompleteListener {
+                    val file = File.createTempFile(item.name, ".txt") // current song
+                    item.getFile(file).addOnSuccessListener {
+                    }.addOnCompleteListener {
+                        songsTags[item.name.substring(0, item.name.length - 4)] =
+                            file.inputStream().bufferedReader().use {
+                                it.readText()
+                            }.split("  ").subList(
+                                0,
+                                file.inputStream().bufferedReader().use { it.readText() }
+                                    .split("  ").size - 2
+                            )
+                    }
+                }
             }
-            true
+        }.continueWith {
+            popup.setOnMenuItemClickListener { menuItem -> // set click listener for each tag item
+                Log.e("tags and songs", songsTags.toString())
+                when (menuItem.itemId) {
+                    R.id.sixties -> { // if 60's clicked
+                        displaySongsWithTag(songsTags, view, "60's")
+                    }
+                    R.id.seventies -> { // 70's clicked
+                        displaySongsWithTag(songsTags, view, "70's")
+                    }
+                    R.id.eighties -> { // if 80's clicked
+                        Toast.makeText(
+                            activity?.applicationContext,
+                            "eighties clicked",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                    R.id.nineties -> { // if 90's clicked
+                        Toast.makeText(
+                            activity?.applicationContext,
+                            "nineties clicked",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                    R.id.noughties -> { // if 00's clicked
+                        Toast.makeText(
+                            activity?.applicationContext,
+                            "noughties clicked",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                    R.id.tens -> { // if 10's clicked
+                        Toast.makeText(
+                            activity?.applicationContext,
+                            "tens clicked",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                    R.id.acoustic -> { // if Acoustic clicked
+                        Toast.makeText(
+                            activity?.applicationContext,
+                            "acoustic clicked",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                    R.id.electric -> { // if Electric clicked
+                        Toast.makeText(
+                            activity?.applicationContext,
+                            "electric clicked",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                    R.id.bass -> { // if Bass clicked
+                        Toast.makeText(
+                            activity?.applicationContext,
+                            "bass clicked",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                    R.id.fingerstyle -> { // if Fingerstyle clicked
+                        Toast.makeText(
+                            activity?.applicationContext,
+                            "fingerstyle clicked",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                    R.id.strum -> { // if Strum clicked
+                        Toast.makeText(
+                            activity?.applicationContext,
+                            "strum clicked",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                    R.id.jazz -> { // if Jazz clicked
+                        Toast.makeText(
+                            activity?.applicationContext,
+                            "jazz clicked",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                    R.id.country -> { // if Country clicked
+                        Toast.makeText(
+                            activity?.applicationContext,
+                            "country clicked",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                    R.id.metal -> { // if Metal clicked
+                        Toast.makeText(
+                            activity?.applicationContext,
+                            "metal clicked",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                    R.id.funk -> { // if Funk clicked
+                        Toast.makeText(
+                            activity?.applicationContext,
+                            "funk clicked",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                    R.id.blues -> { // if Blues clicked
+                        Toast.makeText(
+                            activity?.applicationContext,
+                            "blues clicked",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+
+                }
+                true
+            }
+            popup.show() // display the popup
+
         }
-        popup.show() // display the popup
+    }
+
+    private fun displaySongsWithTag(songsTags: HashMap<String, List<String>>, view: View, tag: String) {
+       for ((songTag, tags) in songsTags) {
+           if (tags.contains(tag)) view.findViewWithTag<Button>(songTag).visibility = View.GONE
+           //else view.findViewWithTag<Button>(songTag).visibility = View.VISIBLE
+       }
     }
 
     /**
@@ -152,7 +246,10 @@ class SongsFragment : Fragment() {
      */
     private fun songButton(item: StorageReference): Button {
         val button = Button(contextApp) // create button view
-        button.tag = item.name.split(separator)[0] + item.name.split(separator)[1]
+        if (item.name.substring(item.name.length - 9, item.name.length - 5) == "tabs")
+            button.tag = (item.name.split(separator)[0] + item.name.split(separator)[1]).substring(0, (item.name.split(separator)[0] + item.name.split(separator)[1]).length - 12)
+        else button.tag = (item.name.split(separator)[0] + item.name.split(separator)[1]).substring(0, (item.name.split(separator)[0] + item.name.split(separator)[1]).length - 14)
+        Log.e("tagecki", button.tag.toString())
         val modeName = item.name.split(separator)[1].split("___")[1] // get mode (tags/chords)
         val params = LinearLayout.LayoutParams( // set layout parameters for teh button view
             LinearLayout.LayoutParams.MATCH_PARENT,
